@@ -1,7 +1,7 @@
 # podman-pihole
 
 ## Set up
-Copy the service unit file to `/etc/systemd/system`.
+Copy the `pihole.service` unit file to `/etc/systemd/system`.
 
 ### Run the following.
 
