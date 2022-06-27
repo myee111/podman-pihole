@@ -1,0 +1,11 @@
+[Unit]
+Description=Pi-Hole Podman Container
+After=firewalld.service
+
+[Service]
+ExecStart=/bin/podman run --name=pihole -e TZ=Americas/Vancouver -e SERVERIP=10.0.0.30 --dns=127.0.0.1 --dns=8.8.8.8 -e WEBPASSWORD=tmelab1 -e TEMPERATUREUNIT=c -v pihole_pihole:/etc/pihole:Z -v pihole_dnsmasq:/etc/dnsmasq.d:Z -p 80:80/tcp -p 53:53/tcp -p 53:53/udp pihole/pihole
+ExecStop=/bin/podman stop -t 2 pihole
+ExecStopPost=/bin/podman rm pihole
+
+[Install]
+WantedBy=multi-user.target
